@@ -3,21 +3,25 @@
 #include "Student.h"
 #include "Node.h"
 
-Student::Student(char newFNm[99], char newLNm[99], int newId, float newGpa){
+Student::Student(char* newFNm, char* newLNm, int* newId, float* newGpa){
   //Have to string copy since we're passing this in from a function
-  fNm = (char*) newFNm;
-  lNm = (char*) newLNm;
-  id = &newId;
-  std::cout << (*id) << std::endl;
-  gpa = &newGpa;
-  std::cout << (*gpa) << std::endl;
+  fNm = new char[strlen(newFNm)];
+  strcpy(fNm, newFNm);
+  lNm = new char[strlen(newLNm)];
+  strcpy(lNm, newLNm);
+  id = new int (*newId);
+  gpa = new float (*newGpa);
 }
 
 Student::~Student(){
-  delete fNm;
-  delete lNm;
+  delete[] fNm;
+  fNm = NULL;
+  delete[] lNm;
+  lNm = NULL;
   delete id;
+  id = NULL;
   delete gpa;
+  gpa = NULL;
 }
 
 Student* Student::getStudent(){

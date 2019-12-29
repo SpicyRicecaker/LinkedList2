@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cstring>
-#include <String.h>
+//#include <String.h> don't need this lol
 #include "Node.h"
 #include "Student.h"
 
@@ -14,7 +14,8 @@ Node::Node(Student* newstudent) { //New student
 }
 
 Node::~Node() { //Delete student
-  delete &student;
+  delete student; //ONE CHANGE!!!
+  student = NULL;
 }
 
 void Node::setStudent(Student* newstudent) { //Set student

@@ -6,7 +6,7 @@
 
 class Student{
  public:
-  Student(char[99], char[99], int, float);
+  Student(char*, char*, int*, float*);
   ~Student();
   Student* getStudent();
   char* getFNm();
