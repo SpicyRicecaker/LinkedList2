@@ -8,7 +8,6 @@
 
 #include <iostream>
 #include <cstring>
-#include <iomanip> //iomanip is included to set the decimal places that floats are printed out by
 #include "Node.h"
 #include "Student.h"
 
@@ -24,12 +23,15 @@ void help();
 void average(Node**, Node**, float, int);
 int listLength(Node**, Node**, int);
 void quit(bool*);
+int charToInt(char*);
 
 //Main function for Linked List Part 2. Basically continuously gets user input and executes commands until the quit function is accessed.
 int main(){
 
   //Setting float output to nearest two decimal places
-  cout << setprecision(3);
+  cout.setf(ios::fixed);
+  cout.setf(ios::showpoint);
+  cout.precision(2);
 
   //Init of head of the list, along with a pointer to it so it can be modified from other funcs
   Node* head = NULL;
@@ -90,7 +92,7 @@ void doCommand(char* input, Node** headptr, bool* runningptr){
     char* temp = &tmp[0];
     getInput(temp);
     //atoi to convert from char array to integer
-    int inId = atoi(temp);
+    int inId = charToInt(temp);
     //Then delete!
     del(headptr, headptr, inId);
     cout << "Successfully removed *" << oldLength - listLength(headptr, headptr, 0) << "* student(s)." << endl;
@@ -129,7 +131,7 @@ void addStudent(Node** headptr){
   cin >> gpa;
   cin.clear();
   cin.ignore(999, '\n');
-  /* Scrapped in favor of setprecision
+  /* Scrapped in favor of setf
   int temp = (int)(gpa * 100 + .5);
   gpa = (float)(temp) / 100;
   */
@@ -296,5 +298,17 @@ int listLength(Node** currentptr, Node** headptr, int studentCount){
 //Quits by setting running to false
 void quit(bool* runningptr){
   *runningptr = false; 
+}
+
+int charToInt(char* input){
+  int output = 0;
+  for(int a = 0; a < strlen(input); ++a){
+    output += (input[a]-'0');
+    if(a = strlen(input)-1){
+      break;
+    }
+    output *= 10;
+  }
+  return output;
 }
 
