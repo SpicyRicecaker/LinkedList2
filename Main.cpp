@@ -64,8 +64,9 @@ void getInput(char* (&in)){
     cin.get(tempIn, 99);
     cin.clear();
     cin.ignore(999, '\n');
+    int inputLength = strlen(tempIn);
 
-    for(int a = 0; a < strlen(tempIn); ++a){
+    for(int a = 0; a < inputLength; ++a){
       tempIn[a] = toupper(tempIn[a]);
     }
 
@@ -289,7 +290,7 @@ int listLength(Node** currentptr, Node** headptr, int studentCount){
   Node* n;
   if((n = (*currentptr)->getNext()) != NULL){
     ++studentCount;
-    listLength(&n, headptr, studentCount);
+    return listLength(&n, headptr, studentCount);
   }else{
     return studentCount;
   }
@@ -302,9 +303,10 @@ void quit(bool* runningptr){
 
 int charToInt(char* input){
   int output = 0;
-  for(int a = 0; a < strlen(input); ++a){
+  int inputLength = strlen(input);
+  for(int a = 0; a < inputLength; ++a){
     output += (input[a]-'0');
-    if(a = strlen(input)-1){
+    if(a == inputLength-1){
       break;
     }
     output *= 10;
