@@ -1,0 +1,4 @@
+#+TITLE: LinkedList2
+
+* Credits
+  - Credits to [[https://github.com/ryantmk518][ryantmk518]] for taking 45 minutes to compile an object file what a scammmm
